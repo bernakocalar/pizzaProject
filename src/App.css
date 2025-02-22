@@ -1,0 +1,37 @@
+body{
+  overflow-x: scroll;
+}
+#container {
+  position: absolute;
+  top: 10%; /* Üstten boşluk bırak */
+  left: 50%; /* Yatay olarak tam ortaya getir */
+  transform: translateX(-50%); /* Kendi genişliğinin yarısı kadar sola kaydır */
+  height: 80px;
+  text-align: center;
+  color : white;
+  
+}
+.app{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/iteration-1-images/home-banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#title{
+  margin-top: 10px;
+font-size: 1.4rem;
+
+}
+#slogan{
+  margin-top: 10px;
+font-size: 3.5rem;
+}
+#firstButton{
+background-color: #FDC913;  
+margin-top: 10px;
+border-radius: 20px;
+}
+
+
