@@ -2,15 +2,6 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './App.css'
-/*const PageWithBackground = () => {
-  useEffect(() => {
-    document.body.classList.add("custom-bg");
-
-    return () => {
-      document.body.classList.remove("custom-bg"); 
-      };
-  }, []);
-}*/
 function App() {
   const navigate = useNavigate(); 
   
