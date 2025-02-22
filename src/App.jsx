@@ -10,6 +10,16 @@ const Container = styled.div`
   height: 80px;
   text-align: center;
   color: white;
+
+  @media (max-width: 768px) {
+    top: 15%;
+    height: 70px;
+  }
+
+  @media (max-width: 480px) {
+    top: 20%;
+    height: 60px;
+  }
 `;
 
 const Title = styled.h1`
@@ -29,13 +39,40 @@ const AppWrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    height: 90vh;
+  }
+
+  @media (max-width: 480px) {
+    height: 85vh;
+  }
 `;
 
 const FirstButton = styled.button`
   background-color: #FDC913;
   margin-top: 10px;
   border-radius: 20px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 200px;
+  height: 50px;
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 40px;
+  }
+
+  @media (max-width: 480px) {
+    width: 120px;
+    height: 35px;
+  }
 `;
+
+
 
 function App() {
   const navigate = useNavigate();
