@@ -41,6 +41,7 @@ function App() {
   const navigate = useNavigate();
 
   return (
+    <>
     <AppWrapper>
       <Container>
         <Title>Teknolojik Yemekler</Title>
@@ -50,6 +51,7 @@ function App() {
         </FirstButton>
       </Container>
     </AppWrapper>
+    </>
   );
 }
 

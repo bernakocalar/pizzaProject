@@ -1,26 +1,43 @@
 import React from 'react';
-import './orderSuccess.css';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { styled } from 'styled-components';
 
-const PageWithBackground = () => {
-  useEffect(() => {
-    document.body.classList.add("custom-success");
+const PageWithBackground = styled.div`
+  background-color: #CE2829;
+  width: 100vw;
+  height: 100vh;
+`;
 
-    return () => {
-      document.body.classList.remove("custom-success"); 
-      };
-  }, []);
-}
-function OrderSuccess({onNavigate}) {
+const Container = styled.div`
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 80px;
+  text-align: center;
+  color: white;
+`;
+
+const Title = styled.h1`
+  margin-top: 10px;
+  font-size: 3rem;
+`;
+
+const Slogan = styled.p`
+  margin-top: 10px;
+  font-size: 1.4rem;
+`;
+
+function OrderSuccess() {
   return (
-    <>
-    <PageWithBackground/>
-    <div id="container">
-      <h1 id="title">Teknolojik Yemekler</h1>
-      <p id="slogan">TEBRİKLER SİPARİŞİNİZ ALINDI.</p>
-    </div>
+<>
+    <PageWithBackground>
+      <Container>
+        <Title>Teknolojik Yemekler</Title>
+        <Slogan>TEBRİKLER SİPARİŞİNİZ ALINDI.</Slogan>
+      </Container>
+    </PageWithBackground>
     </>
-  )
+  );
 }
+
 export default OrderSuccess;
