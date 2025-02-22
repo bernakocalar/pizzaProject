@@ -21,7 +21,7 @@ const handleChange = (e) => {
   const navigate = useNavigate();
 
   return (
-    <>
+    < div style={{color: "black"}}>
       <div id="header">
         <h1 id="title">Teknolojik Yemekler</h1>
         <p id="siparis">Ana Sayfa - Sipariş Oluştur</p>
@@ -106,7 +106,7 @@ const handleChange = (e) => {
           <p>Toplam 130.00</p>
           <button id="firstButton" onClick={() => navigate('/orderSuccess')}>Sipariş ver</button>
       </div>
-    </>
+    </div>
   );
 }
 
