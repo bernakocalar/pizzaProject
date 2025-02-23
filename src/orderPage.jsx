@@ -58,6 +58,7 @@ function OrderPage() {
     e.preventDefault();
 
     if (!validateForm()) {
+
       alert("Lütfen gerekli tüm alanları doldurun!");
       return;
     }
@@ -101,7 +102,7 @@ function OrderPage() {
           <p>4,5 (200)</p>
         </div>
         <p id="pizzaExp">
-          Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre...
+        Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
         </p>
         <form id="mediumArea" onSubmit={handleSubmit}>
           <fieldset id="size">
@@ -146,7 +147,7 @@ function OrderPage() {
             </legend>
             {toppingsList.map(({ value, label }) => (
               <label key={value}>
-                <input
+                <input 
                   type="checkbox"
                   name="toppings"
                   value={value}
@@ -162,19 +163,22 @@ function OrderPage() {
 
           <label htmlFor="note">Sipariş Notu</label>
           <textarea onChange={handleChange} id="note" name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
-
+          
+        <section id="toplam">
+        <h3>Sipariş Toplamı</h3>
+          <p></p>
+          <p>Seçimler:</p>
+          <p> 25.00$</p>
+          <p>Toplam: </p>  
+          <p>130.00$</p>
+          </section>
+          <section id="sonBolum">
           <label htmlFor="quantity">Adet:</label>
           <button id="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
           <input id="quantity" name="quantity" value={quantity} readOnly />
           <button id="tinyButton" type="button" onClick={increaseQuantity}>+</button>
-
-          <p>Sipariş Toplamı</p>
-          <p>Seçimler: 25.00$</p>
-          <p>Toplam: 130.00$</p>
-          <div>
       {!showSuccess ? (
         <>
-          <h1>Pizza Siparişi</h1>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <button 
           id="firstButton"
@@ -185,7 +189,7 @@ function OrderPage() {
       ) : (
         <OrderSuccess orderData={orderData}/>
       )}
-    </div>
+      </section>
         </form>
       </div>
     </div>
