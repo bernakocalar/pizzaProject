@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './orderPage.css';
-
+import OrderSuccess from "./orderSuccess"
 
 function OrderPage() {
   const [note, setNote] = useState('');
@@ -13,26 +13,25 @@ function OrderPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState('');
   const navigate = useNavigate();
+  const [error, setError] = useState('');
+  const [orderData, setOrderData] = useState(null); 
+  const [showSuccess,setShowSuccess] = useState(false)
 
-
-  const goToSuccess = () => {
-    navigate('/orderSuccess');
-  }; 
   const toppingsList = [
     { value: 'pepperoni', label: 'Pepperoni' },
-    { value: 'chicken', label: 'Tavuk Izgara' },
-    { value: 'corn', label: 'Mısır' },
-    { value: 'garlic', label: 'Sarımsak' },
-    { value: 'pineapple', label: 'Ananas' },
-    { value: 'sausage', label: 'Sosis' },
-    { value: 'onion', label: 'Soğan' },
+    { value: 'tavuk ızgara', label: 'Tavuk Izgara' },
+    { value: 'mısır', label: 'Mısır' },
+    { value: 'sarımsak', label: 'Sarımsak' },
+    { value: 'ananas', label: 'Ananas' },
+    { value: 'sosis', label: 'Sosis' },
+    { value: 'soğan', label: 'Soğan' },
     { value: 'sucuk', label: 'Sucuk' },
-    { value: 'pepper', label: 'Biber' },
-    { value: 'zucchini', label: 'Kabak' },
-    {value: "tomateos", label: 'Domates'},
-    {value: "olives", label: 'Zeytin'},
-    {value: "mushrooms", label: 'Mantar'},
-    {value: "eggplant", label: 'Patlıcan'},
+    { value: 'biber', label: 'Biber' },
+    { value: 'kabak', label: 'Kabak' },
+    { value: 'domates', label: 'Domates' },
+    { value: 'zeytin', label: 'Zeytin' },
+    { value: 'mantar', label: 'Mantar' },
+    { value: 'patlıcan', label: 'Patlıcan' },
   ];
 
   const handleToppings = (topping) => {
@@ -66,29 +65,24 @@ function OrderPage() {
     setIsSubmitting(true);
 
     const orderData = {
+      name,
       size,
       dough,
       toppings,
       note,
       quantity,
-      name,
     };
 
     try {
       const response = await axios.post('https://reqres.in/api/pizza', orderData);
-      console.log('Sunucudan Gelen Yanıt:', response.data);
-      console.log('Sipariş Özeti:', {
-        size,
-        dough,
-        toppings,
-        note,
-        quantity,
-        response: response.data
-      });
-      
+      console.log(response.data);
+      setOrderData(response.data);
+      setIsSubmitting(false)
+      setShowSuccess(true)
+      navigate('/orderSuccess' ,  { state: { orderData } });
     } catch (error) {
       console.error('API Hatası:', error);
-    } finally {
+      setError('Sipariş gönderilirken bir hata oluştu.');
       setIsSubmitting(false);
     }
   };
@@ -116,7 +110,7 @@ function OrderPage() {
               <input
                 type="radio"
                 name="size"
-                value="small"
+                value="küçük"
                 onChange={handleSizeChange}
               /> Küçük
             </label>
@@ -124,7 +118,7 @@ function OrderPage() {
               <input
                 type="radio"
                 name="size"
-                value="medium"
+                value="orta"
                 onChange={handleSizeChange}
               /> Orta
             </label>
@@ -132,7 +126,7 @@ function OrderPage() {
               <input
                 type="radio"
                 name="size"
-                value="large"
+                value="büyük"
                 onChange={handleSizeChange}
               /> Büyük
             </label>
@@ -141,9 +135,9 @@ function OrderPage() {
           <label htmlFor="dough" style={{ fontWeight: "bold" }}>Hamur Seç *</label>
           <select id="dough" name="dough" onChange={handleDoughChange}>
             <option value="">Hamur Seçin</option>
-            <option value="thin">İnce</option>
-            <option value="thick">Kalın</option>
-            <option value="gluten-free">Glutensiz</option>
+            <option value="ince">İnce</option>
+            <option value="kalın">Kalın</option>
+            <option value="glutensiz">Glutensiz</option>
           </select>
 
           <fieldset id="toppings">
@@ -177,15 +171,21 @@ function OrderPage() {
           <p>Sipariş Toplamı</p>
           <p>Seçimler: 25.00$</p>
           <p>Toplam: 130.00$</p>
-
-          <button
-            id="firstButton"
+          <div>
+      {!showSuccess ? (
+        <>
+          <h1>Pizza Siparişi</h1>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <button 
+          id="firstButton"
             type="submit"
             disabled={isSubmitting || !validateForm()}
-            onClick={goToSuccess}
-          >
-            Sipariş Ver
-          </button>
+          onClick={handleSubmit}>Siparişi Tamamla</button>
+        </>
+      ) : (
+        <OrderSuccess orderData={orderData}/>
+      )}
+    </div>
         </form>
       </div>
     </div>
