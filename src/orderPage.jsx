@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './orderPage.css';
 
-function OrderPage({ onGoBack, onOrderComplete }) {
+
+function OrderPage() {
   const [note, setNote] = useState('');
   const [toppings, setToppings] = useState([]);
   const [size, setSize] = useState('');
@@ -10,7 +12,12 @@ function OrderPage({ onGoBack, onOrderComplete }) {
   const [quantity, setQuantity] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState('');
+  const navigate = useNavigate();
 
+
+  const goToSuccess = () => {
+    navigate('/orderSuccess');
+  }; 
   const toppingsList = [
     { value: 'pepperoni', label: 'Pepperoni' },
     { value: 'chicken', label: 'Tavuk Izgara' },
@@ -64,6 +71,7 @@ function OrderPage({ onGoBack, onOrderComplete }) {
       toppings,
       note,
       quantity,
+      name,
     };
 
     try {
@@ -77,7 +85,7 @@ function OrderPage({ onGoBack, onOrderComplete }) {
         quantity,
         response: response.data
       });
-      onOrderComplete();
+      
     } catch (error) {
       console.error('API Hatası:', error);
     } finally {
@@ -156,7 +164,7 @@ function OrderPage({ onGoBack, onOrderComplete }) {
           </fieldset>
 
           <label>İsim</label>
-          <textarea onChange={handleNameChange} id="name" name="name" rows="1" placeholder="Adınızı giriniz"></textarea>
+          <textarea onChange={handleNameChange} value={name} id="name" name="name" rows="1" placeholder="Adınızı giriniz"></textarea>
 
           <label htmlFor="note">Sipariş Notu</label>
           <textarea onChange={handleChange} id="note" name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
@@ -174,10 +182,10 @@ function OrderPage({ onGoBack, onOrderComplete }) {
             id="firstButton"
             type="submit"
             disabled={isSubmitting || !validateForm()}
+            onClick={goToSuccess}
           >
             Sipariş Ver
           </button>
-          <button id="secondButton" type="button" onClick={onGoBack}>Geri Dön</button>
         </form>
       </div>
     </div>

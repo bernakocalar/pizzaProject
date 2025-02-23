@@ -1,6 +1,7 @@
 import React from 'react';
-import OrderPage from './orderPage';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import OrderPage from './orderPage';
 import { useState } from 'react';
 import OrderSuccess from './orderSuccess';
 
@@ -74,36 +75,19 @@ const FirstButton = styled.button`
   }
 `;
 
-
-
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const navigate = useNavigate();
 
   return (
-    <>
-      {currentPage === "home" && (
-        <AppWrapper>
-          <Container>
-            <Title>Teknolojik Yemekler</Title>
-            <Slogan>KOD ACIKTIRIR. PİZZA, DOYURUR.</Slogan>
-            <FirstButton onClick={() => setCurrentPage("orderPage")} id="firstButton">
-              ACIKTIM
-            </FirstButton>
-          </Container>
-        </AppWrapper>
-      )}
-
-{currentPage === "orderPage" && (
-        <OrderPage
-          onGoBack={() => setCurrentPage("home")}
-          onOrderComplete={() => setCurrentPage("orderSuccess")}
-        />
-      )}
-
-      {currentPage === "orderSuccess" && (
-        <OrderSuccess onBackHome={() => setCurrentPage("home")} />
-      )}
-    </>
+    <AppWrapper>
+      <Container>
+        <Title>Teknolojik Yemekler</Title>
+        <Slogan>KOD ACIKTIRIR. PİZZA, DOYURUR.</Slogan>
+        <FirstButton onClick={() => navigate('/orderPage')} id="firstButton">
+          ACIKTIM
+        </FirstButton>
+      </Container>
+    </AppWrapper>
   );
 }
 
