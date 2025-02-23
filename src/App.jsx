@@ -1,6 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import OrderPage from './orderPage';
 import styled from 'styled-components';
+import { useState } from 'react';
+import OrderSuccess from './orderSuccess';
 
 const Container = styled.div`
   position: absolute;
@@ -75,19 +77,32 @@ const FirstButton = styled.button`
 
 
 function App() {
-  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState("home");
 
   return (
     <>
-    <AppWrapper>
-      <Container>
-        <Title>Teknolojik Yemekler</Title>
-        <Slogan>KOD ACIKTIRIR. PİZZA, DOYURUR.</Slogan>
-        <FirstButton onClick={() => navigate('/orderPage')} id="firstButton">
-          ACIKTIM
-        </FirstButton>
-      </Container>
-    </AppWrapper>
+      {currentPage === "home" && (
+        <AppWrapper>
+          <Container>
+            <Title>Teknolojik Yemekler</Title>
+            <Slogan>KOD ACIKTIRIR. PİZZA, DOYURUR.</Slogan>
+            <FirstButton onClick={() => setCurrentPage("orderPage")} id="firstButton">
+              ACIKTIM
+            </FirstButton>
+          </Container>
+        </AppWrapper>
+      )}
+
+{currentPage === "orderPage" && (
+        <OrderPage
+          onGoBack={() => setCurrentPage("home")}
+          onOrderComplete={() => setCurrentPage("orderSuccess")}
+        />
+      )}
+
+      {currentPage === "orderSuccess" && (
+        <OrderSuccess onBackHome={() => setCurrentPage("home")} />
+      )}
     </>
   );
 }

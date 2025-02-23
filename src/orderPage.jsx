@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './orderPage.css';
 
-function OrderPage() {
+function OrderPage({onGoBack , onOrderComplete}) {
     const [note, setNote] = useState('');
   const [toppings, setToppings] = useState([]);
   const handleToppings = (topping) => {
@@ -18,7 +17,7 @@ const handleChange = (e) => {
   const [quantity, setQuantity] = useState(1);
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-  const navigate = useNavigate();
+
 
   return (
     < div style={{color: "black"}}>
@@ -104,7 +103,8 @@ const handleChange = (e) => {
           <p>Sipariş Toplamı</p>
           <p>Seçimler 25.00</p>
           <p>Toplam 130.00</p>
-          <button id="firstButton" onClick={() => navigate('/orderSuccess')}>Sipariş ver</button>
+          <button id="firstButton" onClick={onOrderComplete}>Sipariş ver</button>
+          <button id="secondButton" onClick={onGoBack}>Geri Dön</button>
       </div>
     </div>
   );

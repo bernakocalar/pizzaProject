@@ -26,14 +26,35 @@ const Slogan = styled.p`
   margin-top: 10px;
   font-size: 1.4rem;
 `;
+const MainPageButtton = styled.button`
+ background-color: #FDC913;
+  margin-top: 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 200px;
+  height: 50px;
 
-function OrderSuccess() {
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 40px;
+  }
+
+  @media (max-width: 480px) {
+    width: 120px;
+    height: 35px;
+  }`
+function OrderSuccess({onBackHome}) {
   return (
 <>
     <PageWithBackground>
       <Container>
         <Title>Teknolojik Yemekler</Title>
         <Slogan>TEBRİKLER SİPARİŞİNİZ ALINDI.</Slogan>
+        <MainPageButtton  onClick={onBackHome}>Ana Sayfa</MainPageButtton>
       </Container>
     </PageWithBackground>
     </>
