@@ -1,7 +1,9 @@
 #title{
     margin-top: 10px;
   font-size: 2rem;
-  
+  #siparis{
+    margin-top: 5px;
+  }
   }
   #header{
     background-color: #CE2829;
@@ -16,16 +18,11 @@
   text-align: center;
   color : white;
   }
-  #siparis{
-    margin-top: 5px;
-  }
   #form-container{
     position: absolute;
     top: 20%; 
     left: 50%; 
     transform: translateX(-50%); 
-    width: 30em;
- 
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 10px;
@@ -60,8 +57,8 @@
   }
   #mediumArea{
     margin-top: 10px;
-  display: flex;
-  flex-direction: row;
+
+
   font-size: 0.8rem;
   }
   #dough{
@@ -108,4 +105,7 @@
   transition: border-color 0.25s;
   width: 100px;
   height: 30px;
+  }
+  #name{
+    width: 100%;
   }
