@@ -1,26 +1,92 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './orderPage.css';
 
-function OrderPage({onGoBack , onOrderComplete}) {
-    const [note, setNote] = useState('');
+function OrderPage({ onGoBack, onOrderComplete }) {
+  const [note, setNote] = useState('');
   const [toppings, setToppings] = useState([]);
+  const [size, setSize] = useState('');
+  const [dough, setDough] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [name, setName] = useState('');
+
+  const toppingsList = [
+    { value: 'pepperoni', label: 'Pepperoni' },
+    { value: 'chicken', label: 'Tavuk Izgara' },
+    { value: 'corn', label: 'Mısır' },
+    { value: 'garlic', label: 'Sarımsak' },
+    { value: 'pineapple', label: 'Ananas' },
+    { value: 'sausage', label: 'Sosis' },
+    { value: 'onion', label: 'Soğan' },
+    { value: 'sucuk', label: 'Sucuk' },
+    { value: 'pepper', label: 'Biber' },
+    { value: 'zucchini', label: 'Kabak' },
+    {value: "tomateos", label: 'Domates'},
+    {value: "olives", label: 'Zeytin'},
+    {value: "mushrooms", label: 'Mantar'},
+    {value: "eggplant", label: 'Patlıcan'},
+  ];
+
   const handleToppings = (topping) => {
     if (toppings.includes(topping)) {
-      setToppings(toppings.filter(item => item !== topping));
+      setToppings(toppings.filter((item) => item !== topping));
     } else if (toppings.length < 10) {
       setToppings([...toppings, topping]);
     }
   };
-const handleChange = (e) => {
-      setNote(e.target.value)
-  }
-  const [quantity, setQuantity] = useState(1);
+
+  const handleChange = (e) => setNote(e.target.value);
+  const handleSizeChange = (e) => setSize(e.target.value);
+  const handleDoughChange = (e) => setDough(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value);
+
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
+  const validateForm = () => {
+    return size && dough && toppings.length > 3 && name.length >= 3;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      alert("Lütfen gerekli tüm alanları doldurun!");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const orderData = {
+      size,
+      dough,
+      toppings,
+      note,
+      quantity,
+    };
+
+    try {
+      const response = await axios.post('https://reqres.in/api/pizza', orderData);
+      console.log('Sunucudan Gelen Yanıt:', response.data);
+      console.log('Sipariş Özeti:', {
+        size,
+        dough,
+        toppings,
+        note,
+        quantity,
+        response: response.data
+      });
+      onOrderComplete();
+    } catch (error) {
+      console.error('API Hatası:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    < div style={{color: "black"}}>
+    <div style={{ color: "black" }}>
       <div id="header">
         <h1 id="title">Teknolojik Yemekler</h1>
         <p id="siparis">Ana Sayfa - Sipariş Oluştur</p>
@@ -30,81 +96,89 @@ const handleChange = (e) => {
         <h1 id="pizzaName">Position Absolute Acı Pizza</h1>
         <div id="pizzaPrice">
           <p>85,50$</p>
-          <p> 4,5 (200)</p>
+          <p>4,5 (200)</p>
         </div>
         <p id="pizzaExp">
-          Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
+          Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre...
         </p>
-        <form id="mediumArea">
+        <form id="mediumArea" onSubmit={handleSubmit}>
           <fieldset id="size">
-            <legend  style={{fontWeight:"bold"}}>Boyut Seç *</legend>
+            <legend style={{ fontWeight: "bold" }}>Boyut Seç *</legend>
             <label>
-              <input type="radio" name="size" value="small" /> Küçük
+              <input
+                type="radio"
+                name="size"
+                value="small"
+                onChange={handleSizeChange}
+              /> Küçük
             </label>
             <label>
-              <input type="radio" name="size" value="medium" /> Orta
+              <input
+                type="radio"
+                name="size"
+                value="medium"
+                onChange={handleSizeChange}
+              /> Orta
             </label>
             <label>
-              <input type="radio" name="size" value="large" /> Büyük
+              <input
+                type="radio"
+                name="size"
+                value="large"
+                onChange={handleSizeChange}
+              /> Büyük
             </label>
           </fieldset>
-          <label htmlFor="dough" style={{fontWeight:"bold"}}>Hamur Seç *</label>
-          <select id="dough" name="dough">
+
+          <label htmlFor="dough" style={{ fontWeight: "bold" }}>Hamur Seç *</label>
+          <select id="dough" name="dough" onChange={handleDoughChange}>
+            <option value="">Hamur Seçin</option>
             <option value="thin">İnce</option>
             <option value="thick">Kalın</option>
             <option value="gluten-free">Glutensiz</option>
           </select>
-        </form>
-        <fieldset id="toppings">
-          <legend style={{fontWeight:"bold"}}>Ek Malzemeler (En fazla 10 adet seçebilirsiniz.)</legend>
-          <label>
-            <input type="checkbox" name="toppings" value="pepperoni" onChange={() => handleToppings('pepperoni')} disabled={toppings.length >= 10 && !toppings.includes('pepperoni')} /> Pepperoni
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="chicken" onChange={() => handleToppings('chicken')} disabled={toppings.length >= 10 && !toppings.includes('chicken')} /> Tavuk Izgara
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="corn" onChange={() => handleToppings('corn')} disabled={toppings.length >= 10 && !toppings.includes('corn')} /> Mısır
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="garlic" onChange={() => handleToppings('garlic')} disabled={toppings.length >= 10 && !toppings.includes('garlic')} /> Sarımsak
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="pineapple" onChange={() => handleToppings('pineapple')} disabled={toppings.length >= 10 && !toppings.includes('pineapple')} /> Ananas
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="sausage" onChange={() => handleToppings('sausage')} disabled={toppings.length >= 10 && !toppings.includes('sausage')} /> Sosis
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="onion" onChange={() => handleToppings('onion')} disabled={toppings.length >= 10 && !toppings.includes('onion')} /> Soğan
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="sucuk" onChange={() => handleToppings('sucuk')} disabled={toppings.length >= 10 && !toppings.includes('sucuk')} /> Sucuk
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="pepper" onChange={() => handleToppings('pepper')} disabled={toppings.length >= 10 && !toppings.includes('pepper')} /> Biber
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="zucchini" onChange={() => handleToppings('zucchini')} disabled={toppings.length >= 10 && !toppings.includes('zucchini')} /> Kabak
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="canadian-bacon" onChange={() => handleToppings('canadian-bacon')} disabled={toppings.length >= 10 && !toppings.includes('canadian-bacon')} /> Kanada Jambonu
-          </label>
-          <label>
-            <input type="checkbox" name="toppings" value="tomato" onChange={() => handleToppings('tomato')} disabled={toppings.length >= 10 && !toppings.includes('tomato')} /> Domates
-          </label>
-        </fieldset>
-        <label htmlFor="note">Sipariş Notu</label>
-        <textarea onChange={handleChange} id="note" name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
-        <label htmlFor="quantity">Adet:</label>
-        <button id='tinyButton' type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
-        <input id="quantity" name="quantity" value={quantity} readOnly />
-        <button id='tinyButton' type="button" onClick={increaseQuantity}>+</button>
+
+          <fieldset id="toppings">
+            <legend style={{ fontWeight: "bold" }}>
+              Ek Malzemeler (En fazla 10 adet seçebilirsiniz.)
+            </legend>
+            {toppingsList.map(({ value, label }) => (
+              <label key={value}>
+                <input
+                  type="checkbox"
+                  name="toppings"
+                  value={value}
+                  onChange={() => handleToppings(value)}
+                  disabled={toppings.length >= 10 && !toppings.includes(value)}
+                /> {label}
+              </label>
+            ))}
+          </fieldset>
+
+          <label>İsim</label>
+          <textarea onChange={handleNameChange} id="name" name="name" rows="1" placeholder="Adınızı giriniz"></textarea>
+
+          <label htmlFor="note">Sipariş Notu</label>
+          <textarea onChange={handleChange} id="note" name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
+
+          <label htmlFor="quantity">Adet:</label>
+          <button id="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
+          <input id="quantity" name="quantity" value={quantity} readOnly />
+          <button id="tinyButton" type="button" onClick={increaseQuantity}>+</button>
+
           <p>Sipariş Toplamı</p>
-          <p>Seçimler 25.00</p>
-          <p>Toplam 130.00</p>
-          <button id="firstButton" onClick={onOrderComplete}>Sipariş ver</button>
-          <button id="secondButton" onClick={onGoBack}>Geri Dön</button>
+          <p>Seçimler: 25.00$</p>
+          <p>Toplam: 130.00$</p>
+
+          <button
+            id="firstButton"
+            type="submit"
+            disabled={isSubmitting || !validateForm()}
+          >
+            Sipariş Ver
+          </button>
+          <button id="secondButton" type="button" onClick={onGoBack}>Geri Dön</button>
+        </form>
       </div>
     </div>
   );
