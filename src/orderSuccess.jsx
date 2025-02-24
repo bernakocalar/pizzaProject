@@ -42,6 +42,8 @@ height: 300px;
  background-color:black;
 display:flex;
 justify-content: space-evenly;
+@media (max-width: 767px) {
+    display: none;
 `
 const FooterPart = styled.div`
 color: white;

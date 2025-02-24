@@ -57,15 +57,7 @@ function OrderPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-
-      alert("Lütfen gerekli tüm alanları doldurun!");
-      return;
-    }
-
     setIsSubmitting(true);
-
     const orderData = {
       name,
       size,
@@ -94,6 +86,8 @@ function OrderPage() {
    background-color:black;
   display:flex;
   justify-content: space-evenly;
+   @media (max-width: 767px) {
+    display: none;
   `
   const FooterPart = styled.div`
   color: white;

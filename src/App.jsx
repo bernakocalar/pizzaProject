@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-const Container = styled.div`
+const MainContainer = styled.div`
   top: 10%;
   left: 50%;
   text-align: center;
@@ -89,19 +89,24 @@ const FirstButton = styled.button`
   }
 `;
 
+
+
 function App() {
   const navigate = useNavigate();
 
   return (
+    <>
     <AppWrapper>
-      <Container>
+      <MainContainer>
         <Title>Teknolojik Yemekler</Title>
         <Slogan>KOD ACIKTIRIR. PİZZA, DOYURUR.</Slogan>
         <FirstButton onClick={() => navigate('/orderPage')} id="firstButton">
           ACIKTIM
         </FirstButton>
-      </Container>
+      </MainContainer>
     </AppWrapper>
+    </>
+
   );
 }
 
