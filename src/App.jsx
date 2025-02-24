@@ -1,18 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import OrderPage from './orderPage';
-import { useState } from 'react';
-import OrderSuccess from './orderSuccess';
-
 const Container = styled.div`
-  position: absolute;
   top: 10%;
   left: 50%;
-  transform: translateX(-50%);
-  height: 80px;
   text-align: center;
   color: white;
+ 
+
 
   @media (max-width: 768px) {
     top: 15%;
@@ -28,11 +23,28 @@ const Container = styled.div`
 const Title = styled.h1`
   margin-top: 10px;
   font-size: 1.4rem;
+ @media (max-width: 768px) {
+    margin-top: 5px;
+    
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 2px;
+  }
 `;
 
 const Slogan = styled.p`
-  margin-top: 10px;
+  
   font-size: 3.5rem;
+   @media (max-width: 768px) {
+    top: 15%;
+    height: 70px;
+  }
+
+  @media (max-width: 480px) {
+    top: 20%;
+    height: 60px;
+  }
 `;
 
 const AppWrapper = styled.div`
@@ -40,38 +52,42 @@ const AppWrapper = styled.div`
   height: 100vh;
   background-image: url("/iteration-1-images/home-banner.png");
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
+ 
 
   @media (max-width: 768px) {
-    height: 90vh;
+     background-size: cover;
+       background-position: center;
   }
 
   @media (max-width: 480px) {
-    height: 85vh;
+     background-size: cover;
+       background-position: center;
   }
 `;
 
 const FirstButton = styled.button`
   background-color: #FDC913;
-  margin-top: 10px;
   border-radius: 20px;
   border: 1px solid transparent;
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
   width: 200px;
   height: 50px;
 
+
   @media (max-width: 768px) {
-    width: 150px;
-    height: 40px;
+   width: 200px;
+  height: 50px;
+
   }
 
   @media (max-width: 480px) {
-    width: 120px;
-    height: 35px;
+    width: 200px;
+  height: 50px;
+
   }
 `;
 
