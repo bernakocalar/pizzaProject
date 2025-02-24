@@ -14,8 +14,8 @@ function OrderPage() {
   const [name, setName] = useState('');
   const navigate = useNavigate();
   const [error, setError] = useState('');
-  const [orderData, setOrderData] = useState(null); 
-  const [showSuccess,setShowSuccess] = useState(false)
+  const [orderData, setOrderData] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const toppingsList = [
     { value: 'pepperoni', label: 'Pepperoni' },
@@ -80,7 +80,7 @@ function OrderPage() {
       setOrderData(response.data);
       setIsSubmitting(false)
       setShowSuccess(true)
-      navigate('/orderSuccess' ,  { state: { orderData } });
+      navigate('/orderSuccess', { state: { orderData } });
     } catch (error) {
       console.error('API Hatası:', error);
       setError('Sipariş gönderilirken bir hata oluştu.');
@@ -89,10 +89,10 @@ function OrderPage() {
   };
 
   return (
-    <div style={{ color: "black" }}>
+    <div style={{ color: "black", display: "flex", flexDirection: "column" }}>
       <div id="header">
-        <h1 id="title">Teknolojik Yemekler</h1>
-        <p id="siparis">Ana Sayfa - Sipariş Oluştur</p>
+        <h1 >Teknolojik Yemekler</h1>
+        <p >Ana Sayfa - Sipariş Oluştur</p>
       </div>
 
       <div id="form-container">
@@ -102,7 +102,7 @@ function OrderPage() {
           <p>4,5 (200)</p>
         </div>
         <p id="pizzaExp">
-        Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
+          Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
         </p>
         <form id="mediumArea" onSubmit={handleSubmit}>
           <fieldset id="size">
@@ -147,7 +147,7 @@ function OrderPage() {
             </legend>
             {toppingsList.map(({ value, label }) => (
               <label key={value}>
-                <input 
+                <input
                   type="checkbox"
                   name="toppings"
                   value={value}
@@ -163,33 +163,33 @@ function OrderPage() {
 
           <label htmlFor="note">Sipariş Notu</label>
           <textarea onChange={handleChange} id="note" name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
-          
-        <section id="toplam">
-        <h3>Sipariş Toplamı</h3>
-          <p></p>
-          <p>Seçimler:</p>
-          <p> 25.00$</p>
-          <p>Toplam: </p>  
-          <p>130.00$</p>
+
+          <section id="toplam">
+            <h3>Sipariş Toplamı</h3>
+            <p></p>
+            <p>Seçimler:</p>
+            <p> 25.00$</p>
+            <p>Toplam: </p>
+            <p>130.00$</p>
           </section>
           <section id="sonBolum">
-          <label htmlFor="quantity">Adet:</label>
-          <button id="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
-          <input id="quantity" name="quantity" value={quantity} readOnly />
-          <button id="tinyButton" type="button" onClick={increaseQuantity}>+</button>
-      {!showSuccess ? (
-        <>
-          {error && <p style={{ color: "red" }}>{error}</p>}
-          <button 
-          id="firstButton"
-            type="submit"
-            disabled={isSubmitting || !validateForm()}
-          onClick={handleSubmit}>Siparişi Tamamla</button>
-        </>
-      ) : (
-        <OrderSuccess orderData={orderData}/>
-      )}
-      </section>
+            <label htmlFor="quantity">Adet:</label>
+            <button id="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
+            <input id="quantity" name="quantity" value={quantity} readOnly />
+            <button id="tinyButton" type="button" onClick={increaseQuantity}>+</button>
+            {!showSuccess ? (
+              <>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                <button
+                  id="firstButton"
+                  type="submit"
+                  disabled={isSubmitting || !validateForm()}
+                  onClick={handleSubmit}>Siparişi Tamamla</button>
+              </>
+            ) : (
+              <OrderSuccess orderData={orderData} />
+            )}
+          </section>
         </form>
       </div>
     </div>

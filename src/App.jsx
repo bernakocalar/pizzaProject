@@ -7,8 +7,6 @@ const Container = styled.div`
   text-align: center;
   color: white;
  
-
-
   @media (max-width: 768px) {
     top: 15%;
     height: 70px;

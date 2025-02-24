@@ -1,114 +1,115 @@
-#title{
-    margin-top: 10px;
-  font-size: 2rem;
-  #siparis{
-    margin-top: 5px;
-  }
-  }
-  #header{
-    background-color: #CE2829;
-    width: 100%;
-    height: 20%;
-    margin-top: 0;
-    position: absolute;
-    top: 0%;
-  left: 50%;
-  right: 50%;
-  transform: translateX(-50%); 
+#header {
+  background-color: #CE2829;
+
+  height: 30vh;
   text-align: center;
-  color : white;
-  }
-  #form-container{
-    position: absolute;
-    top: 20%; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  #pizzaName{
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-  #pizzaExp{
-    margin-top: 10px;
-    font-size: 0.8rem;
-  }
-  #pizzaPrice{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-  #size{
-    display: flex;
-    flex-direction: column;
-    margin-right: ½rem; ;
-    font-size: 0.8rem;
-  }
-  #toppings {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 sütun oluşturur */
-    gap: 8px; /* Checkboxlar arasında boşluk bırakır */
-    font-size: 0.8rem;
-  }
-  
-  #mediumArea{
-    margin-top: 10px;
+  color: white;
+  background-position: center;
+}
+
+#form-container {
+  margin-left: 30vh;
+  margin-right: 30vh;
+
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#pizzaName {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+#pizzaExp {
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+#pizzaPrice {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+#size {
+  display: flex;
+  flex-direction: column;
+  margin-right: ½rem;
+  ;
+  font-size: 0.8rem;
+}
+
+#toppings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 2 sütun oluşturur */
+  gap: 8px;
+  /* Checkboxlar arasında boşluk bırakır */
+  font-size: 0.8rem;
+}
+
+#mediumArea {
+  margin-top: 10px;
 
 
   font-size: 0.8rem;
-  }
-  #dough{
-    height: 20px;
-  }
-  #note{
-    margin-top: 10px;
-    height: 20px;
-    width: 100%;
-  }
-  #quantity{
-    margin-top: 10px;
-    font-size: 1rem;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-  
-    
-  }
-  #tinyButton{
-    background-color: #FDC913;
-    font-size: 0.8rem;
-    width: 20px;
-    height: 20px;
-    
-  }
-  #firstButton{
-    background-color: #FDC913;
+}
+
+#dough {
+  height: 20px;
+}
+
+#note {
+  margin-top: 10px;
+  height: 20px;
+  width: 100%;
+}
+
+#quantity {
+  margin-top: 10px;
+  font-size: 1rem;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+
+
+}
+
+#tinyButton {
+  background-color: #FDC913;
+  font-size: 0.8rem;
+  width: 20px;
+  height: 20px;
+
+}
+
+#firstButton {
+  background-color: #FDC913;
   margin-top: 10px;
   border-radius: 20px;
   border: 1px solid transparent;
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
-  position: absolute;
   left: 50%;
-  transform: translateX(-50%); 
   text-align: center;
   width: 6rem;
   height: 3rem;
-  }
-  #name{
-    width: 100%;
-  }
-  #toplam {
-  
+}
+
+#name {
+  width: 100%;
+}
+
+#toplam {
+
 
   font-size: 1rem;
-  }
-#sonBolum{
+}
+
+#sonBolum {
   display: flex;
   flex-direction: row;
   align-items: center;
