@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './orderPage.css';
 import OrderSuccess from "./orderSuccess"
+import { styled} from 'styled-components';
 
 function OrderPage() {
   const [note, setNote] = useState('');
@@ -87,7 +88,16 @@ function OrderPage() {
       setIsSubmitting(false);
     }
   };
+  const Footer = styled.section`
 
+  height: 300px;
+   background-color:black;
+  display:flex;
+  justify-content: space-evenly;
+  `
+  const FooterPart = styled.div`
+  color: white;
+  `
   return (
     <div style={{ color: "black", display: "flex", flexDirection: "column" }}>
       <div id="header">
@@ -192,6 +202,28 @@ function OrderPage() {
           </section>
         </form>
       </div>
+      <Footer>
+    <FooterPart>
+      <h2>Teknolojik Yemekler</h2>
+      <p>341 Londonderry Road,  
+      Istanbul Türkiye </p>
+      <p>aciktim@teknolojikyemekler.com  </p>
+      <p>+90 216 123 45 67  </p>
+    </FooterPart>
+    <FooterPart>
+      <h3>Hot Menu</h3>
+      <p>Terminal Pizza  </p>
+<p>5 Kişilik Hackathlon Pizza  </p>
+<p>useEffect Tavuklu Pizza  </p>
+<p>Beyaz Console Frosty  </p>
+<p>Testler Geçti Mutlu Burger </p> 
+<p>Position Absolute Acı Burger </p>
+    </FooterPart>
+    <FooterPart>
+      <h3>İnstagram</h3>
+      <p>© 2023 Teknolojik Yemekler.</p>
+    </FooterPart>
+    </Footer>
     </div>
   );
 }
