@@ -4,6 +4,7 @@ import axios from 'axios';
 import './orderPage.css';
 import OrderSuccess from "./orderSuccess"
 import { styled} from 'styled-components';
+import { Button, ButtonGroup } from 'reactstrap';
 
 function OrderPage() {
   const [note, setNote] = useState('');
@@ -161,20 +162,21 @@ function OrderPage() {
 
           <label htmlFor="note">Sipariş Notu</label>
           <textarea onChange={handleChange} id="note" name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
-
+          <div className='altKisim'>
           <section id="toplam">
             <h3>Sipariş Toplamı</h3>
-            <p></p>
             <p>Seçimler:</p>
             <p> 25.00$</p>
             <p>Toplam: </p>
             <p>130.00$</p>
           </section>
           <section id="sonBolum">
+          
             <label htmlFor="quantity">Adet:</label>
             <button id="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
             <input id="quantity" name="quantity" value={quantity} readOnly />
             <button id="tinyButton" type="button" onClick={increaseQuantity}>+</button>
+            
             {!showSuccess ? (
               <>
                 {error && <p style={{ color: "red" }}>{error}</p>}
@@ -188,6 +190,7 @@ function OrderPage() {
               <OrderSuccess orderData={orderData} />
             )}
           </section>
+          </div>
         </form>
       </div>
       <Footer>
