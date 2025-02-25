@@ -11,12 +11,11 @@ function OrderPage() {
   const [size, setSize] = useState('');
   const [dough, setDough] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState('');
-  const navigate = useNavigate();
   const [error, setError] = useState('');
   const [orderData, setOrderData] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false)
+  const navigate = useNavigate();
 
   const toppingsList = [
     { value: 'pepperoni', label: 'Pepperoni' },
@@ -47,7 +46,6 @@ function OrderPage() {
   const handleSizeChange = (e) => setSize(e.target.value);
   const handleDoughChange = (e) => setDough(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
-
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
@@ -57,7 +55,7 @@ function OrderPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+
     const orderData = {
       name,
       size,
@@ -69,15 +67,11 @@ function OrderPage() {
 
     try {
       const response = await axios.post('https://reqres.in/api/pizza', orderData);
-      console.log(response.data);
       setOrderData(response.data);
-      setIsSubmitting(false)
       setShowSuccess(true)
       navigate('/orderSuccess', { state: { orderData } });
     } catch (error) {
-      console.error('API Hatası:', error);
-      setError('Sipariş gönderilirken bir hata oluştu.');
-      setIsSubmitting(false);
+      setError('Sipariş gönderilirken bir hata oluştu.')
     }
   };
   const Footer = styled.section`
@@ -187,7 +181,7 @@ function OrderPage() {
                 <button
                   id="firstButton"
                   type="submit"
-                  disabled={isSubmitting || !validateForm()}
+                  disabled={ !validateForm()}
                   onClick={handleSubmit}>Siparişi Tamamla</button>
               </>
             ) : (
