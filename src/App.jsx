@@ -160,32 +160,32 @@ function App() {
       </MainContainer>
     </AppWrapper>
     <SmallContainer>
-        <img src = "public/iteration-2-images/icons/1.svg" alt=""/>
+        <img src = "/iteration-2-images/icons/1.svg" alt=""/>
         <p>YENİ! Korea</p>
-        <img src = "public\iteration-2-images\icons/2.svg" alt=""/>
+        <img src = "\iteration-2-images\icons/2.svg" alt=""/>
         <p>Pizza</p>
-        <img src = "public\iteration-2-images\icons/3.svg" alt=""/>
+        <img src = "\iteration-2-images\icons/3.svg" alt=""/>
         <p>Burger</p>
-        <img src = "public\iteration-2-images\icons/4.svg" alt=""/>
+        <img src = "\iteration-2-images\icons/4.svg" alt=""/>
         <p>Kızartmalar</p>
-        <img src = "public\iteration-2-images\icons/5.svg" alt=""/>
+        <img src = "\iteration-2-images\icons/5.svg" alt=""/>
         <p>Fast Food</p>
-        <img src = "public\iteration-2-images\icons/6.svg" alt=""/>
+        <img src = "\iteration-2-images\icons/6.svg" alt=""/>
         <p>Gazlı İçecek</p>
     </SmallContainer>
     <Container>
       <div>
-    <img src="public\iteration-2-images\pictures\food-1.png" />
+    <img src="\iteration-2-images\pictures\food-1.png" />
     <p>Terminal Pizza</p>
     <p>4,9 (200) 60₺</p>
     </div>
     <div>
-    <img src="public\iteration-2-images\pictures\food-2.png" />
+    <img src="\iteration-2-images\pictures\food-2.png" />
     <p>useEffect Tavuklu Pizza</p>
     <p>4,9 (200) 60₺</p>
     </div>
     <div>
-    <img src="public\iteration-2-images\pictures\food-3.png" />
+    <img src="\iteration-2-images\pictures\food-3.png" />
     
     <p>Position Absolute Acı Pizza</p>
     <p>4,9 (200) 60₺</p>
@@ -197,12 +197,12 @@ function App() {
     <h2>Teknolojik Yemekler</h2>
       <div  style = {{display :"grid", gridTemplateColumns: "auto auto",
 gridTemplateRows: "1fr", gap:"10px"}}>
-      <img src="public\iteration-2-images\footer\icons\icon-1.png"/>
+      <img src="\iteration-2-images\footer\icons\icon-1.png"/>
       <p>341 Londonderry Road,  
       Istanbul Türkiye </p>
-      <img src="public\iteration-2-images\footer\icons\icon-2.png"/>
+      <img src="\iteration-2-images\footer\icons\icon-2.png"/>
       <p>aciktim@teknolojikyemekler.com  </p>
-      <img src="public\iteration-2-images\footer\icons\icon-3.png"/>
+      <img src="\iteration-2-images\footer\icons\icon-3.png"/>
       <p>+90 216 123 45 67  </p>
       </div>
     </FooterPart>
@@ -219,12 +219,12 @@ gridTemplateRows: "1fr", gap:"10px"}}>
       <h3>İnstagram</h3>
       <div style = {{display :"grid", gridTemplateColumns: "repeat(3, 1fr)",
 gridTemplateRows: "repeat(2, 1fr)", gap:"10px"}}>
-        <img src="public\iteration-2-images\footer\insta\li-0.png"/>
-        <img src="public\iteration-2-images\footer\insta\li-1.png"/>
-        <img src="public\iteration-2-images\footer\insta\li-2.png"/>
-        <img src="public\iteration-2-images\footer\insta\li-3.png"/>
-        <img src="public\iteration-2-images\footer\insta\li-4.png"/>
-        <img src="public\iteration-2-images\footer\insta\li-5.png"/>
+        <img src="\iteration-2-images\footer\insta\li-0.png"/>
+        <img src="\iteration-2-images\footer\insta\li-1.png"/>
+        <img src="\iteration-2-images\footer\insta\li-2.png"/>
+        <img src="\iteration-2-images\footer\insta\li-3.png"/>
+        <img src="\iteration-2-images\footer\insta\li-4.png"/>
+        <img src="\iteration-2-images\footer\insta\li-5.png"/>
       </div>
       <p>© 2023 Teknolojik Yemekler.</p>
     </FooterPart>
