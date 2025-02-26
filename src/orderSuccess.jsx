@@ -47,6 +47,7 @@ justify-content: space-evenly;
 `
 const FooterPart = styled.div`
 color: white;
+ margin-top : 10px;
 `
 function OrderSuccess() {
   const location = useLocation();

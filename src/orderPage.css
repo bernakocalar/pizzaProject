@@ -1,123 +1,129 @@
 #header {
   background-color: #CE2829;
-  height: 30vh;
+  height: 15vh;
   text-align: center;
   color: white;
   background-position: center;
 }
 
 #form-container {
-  margin-left: 30vh;
-  margin-right: 30vh;
-  background-color: #f2f2f2;
+  margin-left: 30vw;
+  margin-right: 30vw;
   padding: 20px;
   border-radius: 10px;
+
   @media (max-width: 768px) {
     top: 15%;
-   width: 100%;
-   margin-left: 0;
-   margin-right: 0;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
-#pizzaName {
-  margin-top: 10px;
-  font-size: 1rem;
-}
 
-#pizzaExp {
-  margin-top: 10px;
-  font-size: 0.8rem;
-}
-
-#pizzaPrice {
+.pizzaPrice {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  font-size: 1rem;
 }
 
-#size {
+.size {
   display: flex;
   flex-direction: column;
-  margin-right: ½rem;
   font-size: 0.8rem;
 }
 
-#toppings {
+.toppings {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-  font-size: 0.8rem;
 }
 
-#mediumArea {
-  margin-top: 10px;
-  font-size: 0.8rem;
-  @media (max-width: 768px) {
-    top: 15%;
-   width: 100%;
-  }
-}
-
-#dough {
-  height: 20px;
-}
-
-#note {
-  margin-top: 10px;
-  height: 20px;
-  width: 100%;
-}
-
-#quantity {
+.quantity {
   height: 3rem;
   width: 3rem;
   font-size: 1.5rem;
   text-align: center;
   padding: .5rem;
   font-size: 1.5rem;
- border: 1px solid black;
- border-radius: 4px;
+  border: 1px solid black;
+  border-radius: 4px;
 
 }
 
-#tinyButton {
+.tinyButton {
   height: 3rem;
   width: 3rem;
   font-size: 1.5rem;
   background: #FDC913;
-  color:black;
+  color: black;
   border: 0 solid #dbdbdb;
   text-align: center;
   cursor: pointer;
   border-radius: 4px;
 }
 
-#firstButton {
+.mainButton {
   background-color: #FDC913;
   margin-top: 10px;
   border-radius: 20px;
   cursor: pointer;
   width: 6rem;
-  
+
 }
 
-#name {
-  width: 100%;
-}
-
-.altKisim{
+.altKisim {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
 }
-#sonBolum{
+
+#sonBolum {
   display: flex;
   align-items: center;
   justify-content: center;
 
 }
-#toplam{
- font-weight: bold;
+
+#toplam {
+  font-weight: bold;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease;
+  resize: vertical;
+  /* Kullanıcıya dikeyde yeniden boyutlandırma imkanı verir */
+  min-height: 1rem;
+  /* Minimum yükseklik */
+  max-height: 300px;
+  /* Maksimum yükseklik */
+}
+
+textarea:focus {
+  border-color: yellow;
+  /* Odaklanınca kenarlık rengi değişir */
+  background-color: #fff;
+  /* Arka plan beyaz olur */
+  box-shadow: 0 0 8px yellow;
+  /* Gölgeleme efekti */
+  outline: none;
+  /* Odaklanınca dış hatları kaldırır */
+}
+
+textarea::placeholder {
+  color: #aaa;
+  /* Placeholder yazısının rengi */
+  font-style: italic;
+  /* Placeholder metnini italik yapar */
+}
+
+label {
+  font-weight: bold;
 }

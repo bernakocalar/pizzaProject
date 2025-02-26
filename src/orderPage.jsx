@@ -4,7 +4,6 @@ import axios from 'axios';
 import './orderPage.css';
 import OrderSuccess from "./orderSuccess"
 import { styled} from 'styled-components';
-import { Button, ButtonGroup } from 'reactstrap';
 
 function OrderPage() {
   const [note, setNote] = useState('');
@@ -86,6 +85,7 @@ function OrderPage() {
   `
   const FooterPart = styled.div`
   color: white;
+   margin-top : 10px;
   `
   return (
     <div style={{ color: "black", display: "flex", flexDirection: "column" }}>
@@ -93,18 +93,18 @@ function OrderPage() {
         <h1 >Teknolojik Yemekler</h1>
         <p >Ana Sayfa - Sipariş Oluştur</p>
       </div>
-
+      <img style={{marginLeft: "35%", marginRight:"35%" , marginTop:"0"}} src="public\iteration-2-images\pictures\form-banner.png" />
       <div id="form-container">
-        <h1 id="pizzaName">Position Absolute Acı Pizza</h1>
-        <div id="pizzaPrice">
+        <h1 >Position Absolute Acı Pizza</h1>
+        <div className="pizzaPrice">
           <p>85,50₺</p>
           <p>4,5 (200)</p>
         </div>
-        <p id="pizzaExp">
+        <p>
           Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
         </p>
-        <form id="mediumArea" onSubmit={handleSubmit}>
-          <fieldset id="size">
+        <form onSubmit={handleSubmit}>
+          <fieldset className="size">
             <legend style={{ fontWeight: "bold" }}>Boyut Seç *</legend>
             <label>
               <input
@@ -132,22 +132,23 @@ function OrderPage() {
             </label>
           </fieldset>
 
-          <label htmlFor="dough" style={{ fontWeight: "bold" }}>Hamur Seç *</label>
-          <select id="dough" name="dough" onChange={handleDoughChange}>
+          <label htmlFor="dough" >Hamur Seç *</label>
+          <select name="dough" onChange={handleDoughChange}>
             <option value="">Hamur Seçin</option>
             <option value="ince">İnce</option>
             <option value="kalın">Kalın</option>
             <option value="glutensiz">Glutensiz</option>
           </select>
-          <legend style={{ fontWeight: "bold" }}>
+          <legend >
               Ek Malzemeler (En fazla 10 adet seçebilirsiniz.)
             </legend>
-          <fieldset id="toppings">
+          <fieldset className="toppings">
             {toppingsList.map(({ value, label }) => (
               <label key={value}>
                 <input
                   type="checkbox"
                   name="toppings"
+                  id='checkBox'
                   value={value}
                   onChange={() => handleToppings(value)}
                   disabled={toppings.length >= 10 && !toppings.includes(value)}
@@ -157,12 +158,12 @@ function OrderPage() {
           </fieldset>
 
           <label>İsim</label>
-          <textarea onChange={handleNameChange} value={name} id="name" name="name" rows="1" placeholder="Adınızı giriniz"></textarea>
+          <textarea onChange={handleNameChange} value={name} name="name" rows="1" placeholder="Adınızı giriniz"></textarea>
 
           <label htmlFor="note">Sipariş Notu</label>
-          <textarea onChange={handleChange} id="note" name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
+          <textarea onChange={handleChange} name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
           <div className='altKisim'>
-          <section id="toplam">
+          <section>
             <h3>Sipariş Toplamı</h3>
             <p>Seçimler:</p>
             <p> 25.00$</p>
@@ -172,15 +173,15 @@ function OrderPage() {
           <section id="sonBolum">
           
             <label htmlFor="quantity">Adet:</label>
-            <button id="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
-            <input id="quantity" name="quantity" value={quantity} readOnly />
-            <button id="tinyButton" type="button" onClick={increaseQuantity}>+</button>
+            <button className="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
+            <input className="quantity" name="quantity" value={quantity} readOnly />
+            <button className="tinyButton" type="button" onClick={increaseQuantity}>+</button>
             </section>
             {!showSuccess ? (
               <>
                 {error && <p style={{ color: "red" }}>Gerekli alanları doldurun.</p>}
                 <button
-                  id="firstButton"
+                  className="mainButton"
                   type="submit"
                   disabled={ !validateForm()}
                   onClick={handleSubmit}>Siparişi Tamamla</button>
