@@ -139,11 +139,10 @@ function OrderPage() {
             <option value="kalın">Kalın</option>
             <option value="glutensiz">Glutensiz</option>
           </select>
-
-          <fieldset id="toppings">
-            <legend style={{ fontWeight: "bold" }}>
+          <legend style={{ fontWeight: "bold" }}>
               Ek Malzemeler (En fazla 10 adet seçebilirsiniz.)
             </legend>
+          <fieldset id="toppings">
             {toppingsList.map(({ value, label }) => (
               <label key={value}>
                 <input
@@ -176,10 +175,10 @@ function OrderPage() {
             <button id="tinyButton" type="button" onClick={decreaseQuantity} disabled={quantity <= 1}>-</button>
             <input id="quantity" name="quantity" value={quantity} readOnly />
             <button id="tinyButton" type="button" onClick={increaseQuantity}>+</button>
-            
+            </section>
             {!showSuccess ? (
               <>
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                {error && <p style={{ color: "red" }}>Gerekli alanları doldurun.</p>}
                 <button
                   id="firstButton"
                   type="submit"
@@ -189,17 +188,23 @@ function OrderPage() {
             ) : (
               <OrderSuccess orderData={orderData} />
             )}
-          </section>
+        
           </div>
         </form>
       </div>
       <Footer>
     <FooterPart>
-      <h2>Teknolojik Yemekler</h2>
+    <h2>Teknolojik Yemekler</h2>
+      <div  style = {{display :"grid", gridTemplateColumns: "auto auto",
+gridTemplateRows: "1fr", gap:"10px"}}>
+      <img src="public\iteration-2-images\footer\icons\icon-1.png"/>
       <p>341 Londonderry Road,  
       Istanbul Türkiye </p>
+      <img src="public\iteration-2-images\footer\icons\icon-2.png"/>
       <p>aciktim@teknolojikyemekler.com  </p>
+      <img src="public\iteration-2-images\footer\icons\icon-3.png"/>
       <p>+90 216 123 45 67  </p>
+      </div>
     </FooterPart>
     <FooterPart>
       <h3>Hot Menu</h3>
@@ -212,6 +217,15 @@ function OrderPage() {
     </FooterPart>
     <FooterPart>
       <h3>İnstagram</h3>
+      <div style = {{display :"grid", gridTemplateColumns: "repeat(3, 1fr)",
+gridTemplateRows: "repeat(2, 1fr)", gap:"10px"}}>
+        <img src="public\iteration-2-images\footer\insta\li-0.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-1.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-2.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-3.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-4.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-5.png"/>
+      </div>
       <p>© 2023 Teknolojik Yemekler.</p>
     </FooterPart>
     </Footer>

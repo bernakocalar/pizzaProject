@@ -70,11 +70,17 @@ function OrderSuccess() {
     </PageWithBackground>
     <Footer>
     <FooterPart>
-      <h2>Teknolojik Yemekler</h2>
+    <h2>Teknolojik Yemekler</h2>
+      <div  style = {{display :"grid", gridTemplateColumns: "auto auto",
+gridTemplateRows: "1fr", gap:"10px"}}>
+      <img src="public\iteration-2-images\footer\icons\icon-1.png"/>
       <p>341 Londonderry Road,  
       Istanbul Türkiye </p>
+      <img src="public\iteration-2-images\footer\icons\icon-2.png"/>
       <p>aciktim@teknolojikyemekler.com  </p>
+      <img src="public\iteration-2-images\footer\icons\icon-3.png"/>
       <p>+90 216 123 45 67  </p>
+      </div>
     </FooterPart>
     <FooterPart>
       <h3>Hot Menu</h3>
@@ -87,6 +93,15 @@ function OrderSuccess() {
     </FooterPart>
     <FooterPart>
       <h3>İnstagram</h3>
+      <div style = {{display :"grid", gridTemplateColumns: "repeat(3, 1fr)",
+gridTemplateRows: "repeat(2, 1fr)", gap:"10px"}}>
+        <img src="public\iteration-2-images\footer\insta\li-0.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-1.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-2.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-3.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-4.png"/>
+        <img src="public\iteration-2-images\footer\insta\li-5.png"/>
+      </div>
       <p>© 2023 Teknolojik Yemekler.</p>
     </FooterPart>
     </Footer>

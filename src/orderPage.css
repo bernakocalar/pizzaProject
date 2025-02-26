@@ -12,6 +12,12 @@
   background-color: #f2f2f2;
   padding: 20px;
   border-radius: 10px;
+  @media (max-width: 768px) {
+    top: 15%;
+   width: 100%;
+   margin-left: 0;
+   margin-right: 0;
+  }
 }
 
 #pizzaName {
@@ -48,6 +54,10 @@
 #mediumArea {
   margin-top: 10px;
   font-size: 0.8rem;
+  @media (max-width: 768px) {
+    top: 15%;
+   width: 100%;
+  }
 }
 
 #dough {
@@ -61,17 +71,14 @@
 }
 
 #quantity {
-  margin-top: 10px;
   height: 3rem;
   width: 3rem;
   font-size: 1.5rem;
   text-align: center;
-  width: 4rem;
   padding: .5rem;
   font-size: 1.5rem;
-  border: 0;
-  border-top: 0 solid #dbdbdb;
-  border-bottom: 0 solid #dbdbdb;
+ border: 1px solid black;
+ border-radius: 4px;
 
 }
 
@@ -91,13 +98,9 @@
   background-color: #FDC913;
   margin-top: 10px;
   border-radius: 20px;
-  font-size: 1em;
-  font-family: inherit;
   cursor: pointer;
-  left: 50%;
-  text-align: center;
   width: 6rem;
-  height: 3rem;
+  
 }
 
 #name {
@@ -110,11 +113,9 @@
 
 }
 #sonBolum{
-  display: grid;
-  row-gap: 10px;
-  align-content: center;
-  justify-items: center;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
 #toplam{
