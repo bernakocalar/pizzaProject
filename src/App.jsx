@@ -176,18 +176,18 @@ function App() {
       <div>
     <img src="public\iteration-2-images\pictures\food-1.png" />
     <p>Terminal Pizza</p>
-    <p>4,9 (200) 60Tl</p>
+    <p>4,9 (200) 60₺</p>
     </div>
     <div>
     <img src="public\iteration-2-images\pictures\food-2.png" />
     <p>useEffect Tavuklu Pizza</p>
-    <p>4,9 (200) 60Tl</p>
+    <p>4,9 (200) 60₺</p>
     </div>
     <div>
     <img src="public\iteration-2-images\pictures\food-3.png" />
     
     <p>Position Absolute Acı Pizza</p>
-    <p>4,9 (200) 60Tl</p>
+    <p>4,9 (200) 60₺</p>
     </div>
     
     

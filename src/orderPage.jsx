@@ -97,7 +97,7 @@ function OrderPage() {
       <div id="form-container">
         <h1 id="pizzaName">Position Absolute Acı Pizza</h1>
         <div id="pizzaPrice">
-          <p>85,50$</p>
+          <p>85,50₺</p>
           <p>4,5 (200)</p>
         </div>
         <p id="pizzaExp">
