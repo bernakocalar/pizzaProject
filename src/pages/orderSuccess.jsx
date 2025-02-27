@@ -49,9 +49,12 @@ const FooterPart = styled.div`
 color: white;
  margin-top : 10px;
 `
-function OrderSuccess() {
-  const location = useLocation();
-  const { orderData } = location.state || {};
+function OrderSuccess( {orderData}) {
+  console.log(orderData)
+  if (!orderData) 
+    return
+   <h2>Veri yükleniyor...</h2>;
+  
   return (
     <>
     <PageWithBackground>
@@ -59,12 +62,13 @@ function OrderSuccess() {
         <Title>Teknolojik Yemekler</Title>
         <Slogan>TEBRİKLER SİPARİŞİNİZ ALINDI.</Slogan>
       </Container>
+     
       <OrderSummary>
       <h1>Sipariş Özeti</h1>
       <p><strong>İsim:</strong> {orderData.name}</p>
       <p><strong>Boyut:</strong> {orderData.size}</p>
       <p><strong>Hamur:</strong> {orderData.dough}</p>
-      <p><strong>Ek Malzemeler:</strong> {orderData.toppings.join(", ")}</p>
+      <p><strong>Ek Malzemeler:</strong> {orderData.toppings}</p>
       <p><strong>Not:</strong> {orderData.note}</p>
       <p><strong>Adet:</strong> {orderData.quantity}</p>
     </OrderSummary>

@@ -5,7 +5,7 @@ import './orderPage.css';
 import OrderSuccess from "./orderSuccess"
 import { styled} from 'styled-components';
 
-function OrderPage() {
+function OrderPage({setOrderData}) {
   const [note, setNote] = useState('');
   const [toppings, setToppings] = useState([]);
   const [size, setSize] = useState('');
@@ -13,7 +13,6 @@ function OrderPage() {
   const [quantity, setQuantity] = useState(1);
   const [name, setName] = useState('');
   const [error, setError] = useState('');
-  const [orderData, setOrderData] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false)
   const navigate = useNavigate();
 
@@ -42,7 +41,7 @@ function OrderPage() {
     }
   };
 
-  const handleChange = (e) => setNote(e.target.value);
+  const handleChange = (e) => setNote(e.target.value) ;
   const handleSizeChange = (e) => setSize(e.target.value);
   const handleDoughChange = (e) => setDough(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
@@ -55,25 +54,25 @@ function OrderPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const orderData = {
+    
+    const orderDetails = {  // 📌 Gönderilecek sipariş bilgileri oluşturuldu
       name,
       size,
       dough,
       toppings,
-      note,
       quantity,
+      note,
     };
-
     try {
-      const response = await axios.post('https://reqres.in/api/pizza', orderData);
-      setOrderData(response.data);
+      const response = await axios.post('https://reqres.in/api/pizza',orderDetails);
       setShowSuccess(true)
-      navigate('/orderSuccess', { state: { orderData } });
+      setOrderData(response.data)
+      navigate('/orderSuccess')
     } catch (error) {
       setError('Sipariş gönderilirken bir hata oluştu.')
     }
   };
+  console.log(showSuccess)
   const Footer = styled.section`
 
   height: 300px;
@@ -187,7 +186,7 @@ function OrderPage() {
                   onClick={handleSubmit}>Siparişi Tamamla</button>
               </>
             ) : (
-              <OrderSuccess orderData={orderData} />
+              <OrderSuccess/>
             )}
         
           </div>
