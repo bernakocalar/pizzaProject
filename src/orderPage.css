@@ -99,29 +99,23 @@ textarea {
   color: #333;
   transition: all 0.3s ease;
   resize: vertical;
-  /* Kullanıcıya dikeyde yeniden boyutlandırma imkanı verir */
   min-height: 1rem;
-  /* Minimum yükseklik */
   max-height: 300px;
-  /* Maksimum yükseklik */
+ 
 }
 
 textarea:focus {
   border-color: yellow;
-  /* Odaklanınca kenarlık rengi değişir */
   background-color: #fff;
-  /* Arka plan beyaz olur */
   box-shadow: 0 0 8px yellow;
-  /* Gölgeleme efekti */
   outline: none;
-  /* Odaklanınca dış hatları kaldırır */
+ 
 }
 
 textarea::placeholder {
   color: #aaa;
-  /* Placeholder yazısının rengi */
   font-style: italic;
-  /* Placeholder metnini italik yapar */
+  
 }
 
 label {
