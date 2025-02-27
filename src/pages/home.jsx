@@ -95,10 +95,6 @@ const FirstButton = styled.button`
 `;
 const Container = styled.section`
 display: flex;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
   justify-content: center;
   padding: 0;
   place-items: center;
@@ -107,13 +103,14 @@ grid-row-gap: 0px;
   margin- top : 20px;
   font-weight: bold;
       @media (max-width: 768px) {
-   grid-template-columns: repeat(1, 1fr);
+   flex-direction : column;
+   margin-top: 30px;
+
   }
 
 `;
 
 const SmallContainer = styled.section`
-height: 50px;
 padding : 10px;
 display: flex;
 justify-content: space-around;
@@ -127,6 +124,7 @@ place-items: center;
 @media (max-width: 768px) {
 display : flex;
 flex-wrap : wrap;
+  margin-bottom: 30px;
 
   }
 
@@ -172,9 +170,6 @@ function Home() {
         <img src = "\iteration-2-images\icons/6.svg" alt=""/>
         <p>Gazlı İçecek</p>
     </SmallContainer>
-    <MainContainer>
-
-    </MainContainer>
     <Container>
       <div>
     <img src="\iteration-2-images\pictures\food-1.png" />
