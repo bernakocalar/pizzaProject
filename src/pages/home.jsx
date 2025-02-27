@@ -112,24 +112,6 @@ grid-row-gap: 0px;
 
 `;
 
-const MediumContainer = styled.section`
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-  justify-content: center;
-  padding: 0;
-  place-items: center;
-   margin-left: 25%;
-  margin-right: 25%;
-  margin- top : 20px;
-  font-weight: bold;
-      @media (max-width: 768px) {
-   grid-template-columns: repeat(1, 1fr);
-  }
-
-`;
 const SmallContainer = styled.section`
 height: 50px;
 padding : 10px;
