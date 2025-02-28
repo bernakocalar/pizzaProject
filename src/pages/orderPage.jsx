@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './orderPage.css';
 import OrderSuccess from "./orderSuccess";
 import { styled } from 'styled-components';
 
