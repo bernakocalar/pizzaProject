@@ -68,7 +68,7 @@ function OrderSuccess( {orderData}) {
       <p><strong>İsim:</strong> {orderData.name}</p>
       <p><strong>Boyut:</strong> {orderData.size}</p>
       <p><strong>Hamur:</strong> {orderData.dough}</p>
-      <p><strong>Ek Malzemeler:</strong> {orderData.toppings}</p>
+      <p><strong>Ek Malzemeler:</strong> {orderData.toppings.join(",")}</p>
       <p><strong>Not:</strong> {orderData.note}</p>
       <p><strong>Adet:</strong> {orderData.quantity}</p>
     </OrderSummary>
