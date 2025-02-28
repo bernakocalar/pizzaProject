@@ -94,7 +94,7 @@ const FirstButton = styled.button`
   }
 `;
 const Container = styled.section`
-display: flex;
+  display: flex;
   justify-content: center;
   padding: 0;
   place-items: center;
@@ -109,6 +109,28 @@ display: flex;
   }
 
 `;
+const MediumContainer = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr; /
+  grid-template-rows: auto auto; 
+  
+  margin-left: 25%;
+  margin-right: 25%;
+  @media (max-width: 768px) {
+display : flex;
+flex-wrap : wrap;
+  margin-bottom: 30px;
+
+  }
+`;
+const StyledDiv = styled.div`
+  width: 100%;
+  height: 300px;
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+`;
+
 
 const SmallContainer = styled.section`
 padding : 10px;
@@ -170,6 +192,44 @@ function Home() {
         <img src = "\iteration-2-images\icons/6.svg" alt=""/>
         <p>Gazlı İçecek</p>
     </SmallContainer>
+    <MediumContainer>
+      <StyledDiv style={{ backgroundImage: `url("/iteration-2-images/cta/kart-1.png")`, gridRow: "span 2" }} >
+      <div className='miniDiv'> 
+        <p className='firstPictureText'>Özel Lezzetus</p>
+        <button className='uselessButton'>SİPARİŞ VER</button>
+      </div>
+   </StyledDiv>
+   <StyledDiv style={{ backgroundImage: `url("/iteration-2-images/cta/kart-2.png")`, height:"150px"}} >
+      <div className='miniDiv'> 
+        <p className='firstPictureText'>Hackathlon Burger Menü</p>
+        <button className='uselessButton'>SİPARİŞ VER</button>
+      </div>
+   </StyledDiv>
+      <StyledDiv style={{ backgroundImage: `url("/iteration-2-images/cta/kart-3.png")`, height:"150px"}} >
+      <div className='miniDiv'> 
+        <p className='lastPictureText'>Çoooook hızlı npm gibi kurye </p>
+        <button className='uselessButton'>SİPARİŞ VER</button>
+      </div>
+   </StyledDiv>
+    </MediumContainer>
+    <SmallContainer>
+      <p style={{fontWeight: "bold", fontSize:"2rem", fontFamily:"Barlow", color:"gray"}}>Acıktıran Kodlara Doyuran Lezzetler</p>
+    </SmallContainer>
+    <SmallContainer>
+        <img src = "/iteration-2-images/icons/1.svg" alt=""/>
+        <p>YENİ! Korea</p>
+        <img src = "\iteration-2-images\icons/2.svg" alt=""/>
+        <p>Pizza</p>
+        <img src = "\iteration-2-images\icons/3.svg" alt=""/>
+        <p>Burger</p>
+        <img src = "\iteration-2-images\icons/4.svg" alt=""/>
+        <p>Kızartmalar</p>
+        <img src = "\iteration-2-images\icons/5.svg" alt=""/>
+        <p>Fast Food</p>
+        <img src = "\iteration-2-images\icons/6.svg" alt=""/>
+        <p>Gazlı İçecek</p>
+    </SmallContainer>
+
     <Container>
       <div>
     <img src="\iteration-2-images\pictures\food-1.png" />

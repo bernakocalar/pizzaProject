@@ -10,3 +10,30 @@
   -moz-osx-font-smoothing: grayscale;
   gap: 3px;
 }
+.miniDiv{
+ width: 50%;
+ 
+  
+}
+.firstPictureText{
+ margin-top: 10%;
+ margin-left: 10%;
+ color: white;
+ font-size: 1rem;
+}
+.uselessButton{
+ padding: 10px;
+  border-radius: 30px;
+  color: red;
+font-weight: bolder;
+margin-left: 10%;
+}
+.lastPictureText{
+  margin-top: 10%;
+ margin-left: 10%;
+ color: black;
+ font-size: 1rem;
+ @media (max-width: 768px) {
+  font-size:1rem;
+    }
+}
