@@ -18,11 +18,6 @@ const Container = styled.div`
   color: white;
 `;
 
-const Title = styled.h1`
-  margin-top: 10px;
-  font-size: 3rem;
-`;
-
 const Slogan = styled.p`
   margin-top: 10px;
   font-size: 1.4rem;
@@ -59,7 +54,7 @@ function OrderSuccess( {orderData}) {
     <>
     <PageWithBackground>
       <Container>
-        <Title>Teknolojik Yemekler</Title>
+      <img style={{marginTop:"10px"}} src='\iteration-1-images\logo.svg' />
         <Slogan>TEBRİKLER SİPARİŞİNİZ ALINDI.</Slogan>
       </Container>
      
@@ -68,7 +63,7 @@ function OrderSuccess( {orderData}) {
       <p><strong>İsim:</strong> {orderData.name}</p>
       <p><strong>Boyut:</strong> {orderData.size}</p>
       <p><strong>Hamur:</strong> {orderData.dough}</p>
-      <p><strong>Ek Malzemeler:</strong> {orderData.toppings.join(",")}</p>
+      <p><strong>Ek Malzemeler:</strong> {(orderData.toppings || []).join(", ")}</p>
       <p><strong>Not:</strong> {orderData.note}</p>
       <p><strong>Adet:</strong> {orderData.quantity}</p>
     </OrderSummary>

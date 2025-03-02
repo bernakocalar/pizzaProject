@@ -20,19 +20,6 @@ const MainContainer = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  margin-top: 10px;
-  font-size: 1.4rem;
- @media (max-width: 768px) {
-    margin-top: 5px;
-    
-  }
-
-  @media (max-width: 480px) {
-    margin-top: 2px;
-  }
-`;
-
 const Slogan = styled.p`
   
   font-size: 3.5rem;
@@ -171,7 +158,7 @@ function Home() {
     <>
     <AppWrapper>
       <MainContainer>
-        <Title>Teknolojik Yemekler</Title>
+      <img style={{marginTop:"10px"}} src='\iteration-1-images\logo.svg' />
         <Slogan>KOD ACIKTIRIR. PİZZA, DOYURUR.</Slogan>
         <FirstButton onClick={() => navigate('/orderPage')} >
           ACIKTIM
@@ -196,19 +183,19 @@ function Home() {
       <StyledDiv style={{ backgroundImage: `url("/iteration-2-images/cta/kart-1.png")`, gridRow: "span 2" }} >
       <div className='miniDiv'> 
         <p className='firstPictureText'>Özel Lezzetus</p>
-        <button className='uselessButton'>SİPARİŞ VER</button>
+        <button className='uselessButton' onClick={() => navigate('/orderPage')}>SİPARİŞ VER</button>
       </div>
    </StyledDiv>
    <StyledDiv style={{ backgroundImage: `url("/iteration-2-images/cta/kart-2.png")`, height:"150px"}} >
       <div className='miniDiv'> 
         <p className='firstPictureText'>Hackathlon Burger Menü</p>
-        <button className='uselessButton'>SİPARİŞ VER</button>
+        <button className='uselessButton' onClick={() => navigate('/orderPage')}>SİPARİŞ VER</button>
       </div>
    </StyledDiv>
       <StyledDiv style={{ backgroundImage: `url("/iteration-2-images/cta/kart-3.png")`, height:"150px"}} >
       <div className='miniDiv'> 
         <p className='lastPictureText'>Çoooook hızlı npm gibi kurye </p>
-        <button className='uselessButton'>SİPARİŞ VER</button>
+        <button className='uselessButton' onClick={() => navigate('/orderPage')}>SİPARİŞ VER</button>
       </div>
    </StyledDiv>
     </MediumContainer>

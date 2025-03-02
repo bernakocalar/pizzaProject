@@ -104,7 +104,7 @@ function OrderPage({ setOrderData }) {
   return (
     <div style={{ color: "black", display: "flex", flexDirection: "column" }}>
       <div id="header">
-        <h1>Teknolojik Yemekler</h1>
+      <img style={{marginTop:"10px"}} src='\iteration-1-images\logo.svg' />
         <p>Ana Sayfa - Sipariş Oluştur</p>
       </div>
       <img style={{ marginLeft: "35%", marginRight: "35%", marginTop: "0" }} src="\iteration-2-images\pictures\form-banner.png" />
