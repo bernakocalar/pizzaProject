@@ -180,9 +180,9 @@ function OrderPage({ setOrderData }) {
             <section>
               <h3>Sipariş Toplamı</h3>
               <p>Seçimler:</p>
-              <p>25.00$</p>
+              <p>25.00₺</p>
               <p>Toplam:</p>
-              <p>130.00$</p>
+              <p>130.00₺</p>
             </section>
             <section id="sonBolum">
               <label htmlFor="quantity">Adet:</label>
