@@ -36,7 +36,7 @@ margin-left: 10%;
   font-size:1rem;
     }
 }
-#header {
+.header {
   background-color: #CE2829;
   height: 15vh;
   text-align: center;

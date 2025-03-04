@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import OrderSuccess from "./orderSuccess";
 import { styled } from 'styled-components';
+import { useForm } from 'react-hook-form';
 
 function OrderPage({ setOrderData }) {
-  const [formData, setFormData] = useState({
-    note: '',
-    toppings: [],
-    size: '',
-    dough: '',
-    quantity: 1,
-    name: '',
-  });
-
-  const [error, setError] = useState('');
-  const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
-
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors, isSubmitting },
+    setValue,
+    watch
+  } = useForm({
+    defaultValues: {
+      note: '',
+      toppings: [],
+      size: '',
+      dough: '',
+      quantity: 1,
+      name: ''
+    }
+  });
   const toppingsList = [
     { value: 'pepperoni', label: 'Pepperoni' },
     { value: 'tavuk ızgara', label: 'Tavuk Izgara' },
@@ -35,57 +38,28 @@ function OrderPage({ setOrderData }) {
     { value: 'patlıcan', label: 'Patlıcan' },
   ];
 
-  const handleToppings = (topping) => {
-    setFormData(prevState => {
-      const newToppings = prevState.toppings.includes(topping)
-        ? prevState.toppings.filter(item => item !== topping)
-        : [...prevState.toppings, topping];
-      return { ...prevState, toppings: newToppings };
-    });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
-  };
+  const watchedToppings = watch('toppings');
+  const watchedQuantity = watch('quantity');
 
   const handleQuantityChange = (operation) => {
-    setFormData(prevState => ({
-      ...prevState,
-      quantity: operation === 'increase'
-        ? prevState.quantity + 1
-        : prevState.quantity > 1
-        ? prevState.quantity - 1
-        : 1,
-    }));
+    const currentQuantity = watchedQuantity;
+    setValue('quantity', 
+      operation === 'increase' 
+        ? currentQuantity + 1 
+        : currentQuantity > 1 
+        ? currentQuantity - 1 
+        : 1
+    );
   };
 
-  const validateForm = () => {
-    const { name, size, dough, toppings } = formData;
-    if (!name || !size || !dough || toppings.length < 3) {
-      setError("Lütfen tüm gerekli alanları doldurun.");
-      return false;
-    }
-    setError('');
-    return true;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
-
-    const orderDetails = { ...formData };
-    try {
-      const response = await axios.post('https://reqres.in/api/pizza', orderDetails);
-      setShowSuccess(true);
-      setOrderData(response.data);
-      navigate('/orderSuccess');
-    } catch (error) {
-      setError('Sipariş gönderilirken bir hata oluştu.');
-    }
-  };
-
+  const onSubmit = async (data) => {
+    if (data.toppings.length < 3) {
+      setError("En az 3 malzeme seçmelisiniz.");
+    }else
+{await axios.post('https://reqres.in/api/pizza', data);
+      navigate('/orderSuccess');}
+      setOrderData(data)
+}
   const Footer = styled.section`
     height: 300px;
     background-color: black;
@@ -103,11 +77,12 @@ function OrderPage({ setOrderData }) {
 
   return (
     <div style={{ color: "black", display: "flex", flexDirection: "column" }}>
-      <div id="header">
-      <img style={{marginTop:"10px"}} src='\iteration-1-images\logo.svg' />
+      <div className="header">
+        <img style={{marginTop:"10px"}} src='\iteration-1-images\logo.svg' />
         <p>Ana Sayfa - Sipariş Oluştur</p>
       </div>
-      <img style={{ marginLeft: "35%", marginRight: "35%", marginTop: "0" }} src="\iteration-2-images\pictures\form-banner.png" />
+      <img style={{ marginLeft: "35%", marginRight: "35%", marginTop: "0" }} 
+           src="\iteration-2-images\pictures\form-banner.png" />
       <div id="form-container">
         <h1>Position Absolute Acı Pizza</h1>
         <div className="pizzaPrice">
@@ -115,44 +90,46 @@ function OrderPage({ setOrderData }) {
           <p>4,5 (200)</p>
         </div>
         <p>
-          Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir.
+        Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir.
+
         </p>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset className="size">
             <legend style={{ fontWeight: "bold" }}>Boyut Seç *</legend>
             <label>
               <input
                 type="radio"
-                name="size"
+                {...register("size", { required: "Boyut seçimi zorunludur" })}
                 value="küçük"
-                onChange={handleChange}
               /> Küçük
             </label>
             <label>
               <input
                 type="radio"
-                name="size"
+                {...register("size", { required: "Boyut seçimi zorunludur" })}
                 value="orta"
-                onChange={handleChange}
               /> Orta
             </label>
             <label>
               <input
                 type="radio"
-                name="size"
+                {...register("size", { required: "Boyut seçimi zorunludur" })}
                 value="büyük"
-                onChange={handleChange}
               /> Büyük
             </label>
+            {errors.size && <p style={{ color: "red" }}>{errors.size.message}</p>}
           </fieldset>
 
           <label htmlFor="dough">Hamur Seç *</label>
-          <select name="dough" onChange={handleChange}>
+          <select 
+            {...register("dough", { required: "Hamur seçimi zorunludur" })}
+          >
             <option value="">Hamur Seçin</option>
             <option value="ince">İnce</option>
             <option value="kalın">Kalın</option>
             <option value="glutensiz">Glutensiz</option>
           </select>
+          {errors.dough && <p style={{ color: "red" }}>{errors.dough.message}</p>}
 
           <legend>Ek Malzemeler (En fazla 10 adet seçebilirsiniz.)</legend>
           <fieldset className="toppings">
@@ -160,55 +137,64 @@ function OrderPage({ setOrderData }) {
               <label key={value}>
                 <input
                   type="checkbox"
-                  name="toppings"
-                  id="checkBox"
+                  {...register("toppings")}
                   value={value}
-                  onChange={() => handleToppings(value)}
-                  disabled={formData.toppings.length >= 10 && !formData.toppings.includes(value)}
+                  disabled={watchedToppings.length >= 10 && !watchedToppings.includes(value)}
                 /> {label}
               </label>
             ))}
           </fieldset>
 
           <label>İsim</label>
-          <textarea onChange={handleChange} value={formData.name} name="name" rows="1" placeholder="Adınızı giriniz"></textarea>
+          <textarea 
+            {...register("name", { required: "İsim zorunludur" })}
+            rows="1" 
+            placeholder="Adınızı giriniz"
+          />
+          {errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
 
           <label htmlFor="note">Sipariş Notu</label>
-          <textarea onChange={handleChange} name="note" rows="1" placeholder="Siparişine eklemek istediğin bir not var mı?"></textarea>
+          <textarea 
+            {...register("note")}
+            rows="1" 
+            placeholder="Siparişine eklemek istediğin bir not var mı?"
+          />
 
           <div className="altKisim">
             <section>
               <h3>Sipariş Toplamı</h3>
-              <p>Seçimler:</p>
-              <p>25.00₺</p>
-              <p>Toplam:</p>
-              <p>130.00₺</p>
+              <p>Seçimler: 25.00₺</p>
+              <p>Toplam: 130.00₺</p>
             </section>
             <section id="sonBolum">
               <label htmlFor="quantity">Adet:</label>
-              <button className="tinyButton" type="button" onClick={() => handleQuantityChange('decrease')} disabled={formData.quantity <= 1}>-</button>
-              <input className="quantity" name="quantity" value={formData.quantity} readOnly />
-              <button className="tinyButton" type="button" onClick={() => handleQuantityChange('increase')}>+</button>
+              <button 
+                className="tinyButton" 
+                type="button" 
+                onClick={() => handleQuantityChange('decrease')} 
+                disabled={watchedQuantity <= 1}
+              >-</button>
+              <input 
+                className="quantity" 
+                {...register("quantity")}
+                readOnly 
+              />
+              <button 
+                className="tinyButton" 
+                type="button" 
+                onClick={() => handleQuantityChange('increase')}
+              >+</button>
             </section>
-
-            {!showSuccess ? (
-              <>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <button
-                  className="mainButton"
-                  type="submit"
-                  disabled={!validateForm}
-                >
-                  Siparişi Tamamla
-                </button>
-              </>
-            ) : (
-              <OrderSuccess />
-            )}
+              <button 
+                className="mainButton" 
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Siparişi Tamamla
+              </button>
           </div>
         </form>
       </div>
-
       <Footer>
         <FooterPart>
           <h2>Teknolojik Yemekler</h2>
@@ -244,7 +230,8 @@ function OrderPage({ setOrderData }) {
         </FooterPart>
       </Footer>
     </div>
+    
   );
-}
 
+}
 export default OrderPage;
