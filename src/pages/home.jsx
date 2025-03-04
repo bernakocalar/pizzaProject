@@ -132,9 +132,10 @@ place-items: center;
 
 @media (max-width: 768px) {
 display : flex;
-justify-content: space-between;
-flex-wrap : wrap;
+justify-content: space-around;
+align-items = center;
   margin-bottom: 30px;
+  flex-wrap: wrap;
 
   }
 
